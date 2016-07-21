@@ -7,7 +7,13 @@
 
   "chrome_url_overrides" : {
       "newtab": "tab.html"
-    },
+  },
+
+  "content_scripts": [
+    {
+      "js": ["tab.js"]
+    }
+  ],
 
   "permissions": [
    "activeTab"
