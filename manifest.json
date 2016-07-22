@@ -9,12 +9,6 @@
       "newtab": "tab.html"
   },
 
-  "content_scripts": [
-    {
-      "js": ["tab.js"]
-    }
-  ],
-
   "permissions": [
    "activeTab",
    "storage"
