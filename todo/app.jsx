@@ -7,49 +7,52 @@ const App = React.createClass({
     return { tasks: [] };
   },
 
-  updateTasks(newTask) {
-    debugger
-    const allTasks = this.state.tasks.concat([newTask]);
-    this.setState({ tasks: allTasks });
-    this.sync();
-  },
-
   componentDidMount() {
     const that = this;
+    this.fetchTasks();
     chrome.storage.onChanged.addListener(function(todo, local) {
-      that.setState({ tasks: that.fetchTasks() });
+      that.fetchTasks();
     });
-    debugger
+  },
+
+  updateTasks(newTask) {
+    const newTaskObject = {
+      id: this.state.tasks.length + 1,
+      task: newTask
+    }
+    const allTasks = this.state.tasks.concat([newTaskObject]);
+    this.setState({ tasks: allTasks });
+    this.sync(allTasks);
   },
 
   fetchTasks() {
-    let taskList;
-
     chrome.storage.local.get('todo', tasks => {
       if (tasks.todo != null) {
-        taskList = tasks
-        // for (let i = 0; i < that.tasks.length; i++) {
-        //   that.tasks[i]['id'] = i + 1;
-        // }
-        // cb(that.tasks);
+        this.setState({ tasks: tasks.todo });
       }
     });
-    debugger
-    return taskList;
   },
 
-  sync() {
-    chrome.storage.local.set({todo: this.state.tasks}, function() {
-      console.log('chrome storage has been updated')
+  sync(tasks) {
+    chrome.storage.local.set({todo: tasks}, function() {
     });
+  },
+
+  _destroyTask(taskId) {
+    for (let i = 0; i < this.state.tasks.length; i++) {
+      if (this.state.tasks[i].id === taskId) {
+        this.state.tasks.splice(i, 1);
+      }
+    }
+    this.sync(this.state.tasks);
   },
 
   render() {
     return (
       <div className='todo-list'>
         <h3>To Do List</h3>
-        <TodoList tasks={this.state.tasks} />
-        <TodoForm onFormSubmit={this.updateTasks}/>
+        <TodoList tasks={this.state.tasks} length={this.state.length} destroy={this._destroyTask}/>
+        <TodoForm tasksLength={this.state.tasks.length} onFormSubmit={this.updateTasks}/>
       </div>
     );
   }
