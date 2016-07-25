@@ -18,6 +18,7 @@ const App = React.createClass({
   updateTasks(newTask) {
     const newTaskObject = {
       id: this.state.tasks.length + 1,
+      completed: false,
       task: newTask
     }
     const allTasks = this.state.tasks.concat([newTaskObject]);
@@ -38,6 +39,16 @@ const App = React.createClass({
     });
   },
 
+  _completeTask(taskId) {
+    for (let i = 0; i < this.state.tasks.length; i++) {
+      if (this.state.tasks[i].id === taskId) {
+        this.state.tasks[i].completed = !this.state.tasks[i].completed;
+      }
+    }
+
+    this.sync(this.state.tasks);
+  },
+
   _destroyTask(taskId) {
     for (let i = 0; i < this.state.tasks.length; i++) {
       if (this.state.tasks[i].id === taskId) {
@@ -50,9 +61,11 @@ const App = React.createClass({
   render() {
     return (
       <div className='todo-list'>
-        <h3>To Do List</h3>
-        <TodoList tasks={this.state.tasks} length={this.state.length} destroy={this._destroyTask}/>
-        <TodoForm tasksLength={this.state.tasks.length} onFormSubmit={this.updateTasks}/>
+        <div>
+          <h3>To Do List</h3>
+          <TodoList tasks={this.state.tasks} destroy={this._destroyTask} complete={this._completeTask}/>
+        </div>
+        <TodoForm className='form' tasksLength={this.state.tasks.length} onFormSubmit={this.updateTasks}/>
       </div>
     );
   }

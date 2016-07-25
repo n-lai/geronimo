@@ -2,31 +2,36 @@ const React = require('react');
 const TodoListItem = require('./todo_list_item');
 
 const TodoList = React.createClass({
-  _handleDestroy(e) {
-    e.preventDefault();
-    this.props.destroy(parseInt(e.target.value));
+  _handleDestroy(taskId) {
+    this.props.destroy(taskId);
+  },
+
+  _handleComplete(taskId) {
+    this.props.complete(taskId);
   },
 
   render() {
-    if (this.props.length === 0) {
+    if (this.props.tasks.length === 0) {
       return <div></div>;
     }
 
     const that = this;
-    const createItem = function(id, itemText) {
-      return (
-        <div>
-          <TodoListItem>{itemText}</TodoListItem>
-          <button className='destroy' onClick={that._handleDestroy} value={id}>Destroy</button>
-        </div>
-      );
-    };
 
     return (
       <ul>
-        {this.props.tasks.map(task => {
-          return createItem(task.id, task.task);
-        })}
+        {
+          this.props.tasks.map(task => {
+            return (
+              <li key={task.id}>
+                <TodoListItem
+                  task={task}
+                  handleDestroy={that._handleDestroy.bind(null, task.id)}
+                  handleComplete={that._handleComplete.bind(null, task.id)}
+                />
+              </li>
+            );
+          })
+        }
       </ul>
     );
   }

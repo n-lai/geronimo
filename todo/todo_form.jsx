@@ -20,8 +20,8 @@ const TodoForm = React.createClass({
   render() {
     return (
       <form onSubmit={this._handleSubmit}>
-        <input type="text" ref="task" onChange={this._onChange} value={this.state.task}/>
-        <input type="submit" value="Add" />
+        <input type="text" ref="task" onChange={this._onChange} placeholder='Add a todo' value={this.state.task} className='form-input'/>
+        <input type="submit" value="Add" className='submit-button'/>
       </form>
     );
   }

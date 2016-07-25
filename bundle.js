@@ -21127,6 +21127,7 @@
 	  updateTasks: function updateTasks(newTask) {
 	    var newTaskObject = {
 	      id: this.state.tasks.length + 1,
+	      completed: false,
 	      task: newTask
 	    };
 	    var allTasks = this.state.tasks.concat([newTaskObject]);
@@ -21145,6 +21146,15 @@
 	  sync: function sync(tasks) {
 	    chrome.storage.local.set({ todo: tasks }, function () {});
 	  },
+	  _completeTask: function _completeTask(taskId) {
+	    for (var i = 0; i < this.state.tasks.length; i++) {
+	      if (this.state.tasks[i].id === taskId) {
+	        this.state.tasks[i].completed = !this.state.tasks[i].completed;
+	      }
+	    }
+
+	    this.sync(this.state.tasks);
+	  },
 	  _destroyTask: function _destroyTask(taskId) {
 	    for (var i = 0; i < this.state.tasks.length; i++) {
 	      if (this.state.tasks[i].id === taskId) {
@@ -21158,12 +21168,16 @@
 	      'div',
 	      { className: 'todo-list' },
 	      React.createElement(
-	        'h3',
+	        'div',
 	        null,
-	        'To Do List'
+	        React.createElement(
+	          'h3',
+	          null,
+	          'To Do List'
+	        ),
+	        React.createElement(TodoList, { tasks: this.state.tasks, destroy: this._destroyTask, complete: this._completeTask })
 	      ),
-	      React.createElement(TodoList, { tasks: this.state.tasks, length: this.state.length, destroy: this._destroyTask }),
-	      React.createElement(TodoForm, { tasksLength: this.state.tasks.length, onFormSubmit: this.updateTasks })
+	      React.createElement(TodoForm, { className: 'form', tasksLength: this.state.tasks.length, onFormSubmit: this.updateTasks })
 	    );
 	  }
 	});
@@ -21181,38 +21195,32 @@
 
 	var TodoList = React.createClass({
 	  displayName: 'TodoList',
-	  _handleDestroy: function _handleDestroy(e) {
-	    e.preventDefault();
-	    this.props.destroy(parseInt(e.target.value));
+	  _handleDestroy: function _handleDestroy(taskId) {
+	    this.props.destroy(taskId);
+	  },
+	  _handleComplete: function _handleComplete(taskId) {
+	    this.props.complete(taskId);
 	  },
 	  render: function render() {
-	    if (this.props.length === 0) {
+	    if (this.props.tasks.length === 0) {
 	      return React.createElement('div', null);
 	    }
 
 	    var that = this;
-	    var createItem = function createItem(id, itemText) {
-	      return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          TodoListItem,
-	          null,
-	          itemText
-	        ),
-	        React.createElement(
-	          'button',
-	          { className: 'destroy', onClick: that._handleDestroy, value: id },
-	          'Destroy'
-	        )
-	      );
-	    };
 
 	    return React.createElement(
 	      'ul',
 	      null,
 	      this.props.tasks.map(function (task) {
-	        return createItem(task.id, task.task);
+	        return React.createElement(
+	          'li',
+	          { key: task.id },
+	          React.createElement(TodoListItem, {
+	            task: task,
+	            handleDestroy: that._handleDestroy.bind(null, task.id),
+	            handleComplete: that._handleComplete.bind(null, task.id)
+	          })
+	        );
 	      })
 	    );
 	  }
@@ -21224,17 +21232,45 @@
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(1);
 
 	var TodoListItem = React.createClass({
-	  displayName: 'TodoListItem',
+	  displayName: "TodoListItem",
+	  _handleCheck: function _handleCheck(e) {
+	    e.preventDefault();
+	    this.props.handleComplete();
+	  },
+	  _handleDestroy: function _handleDestroy(e) {
+	    e.preventDefault();
+	    this.props.handleDestroy();
+	  },
 	  render: function render() {
+	    var completed = "";
+
+	    if (this.props.task.completed) {
+	      completed = "completed";
+	    }
+
 	    return React.createElement(
-	      'li',
-	      null,
-	      this.props.children
+	      "div",
+	      { className: "task" },
+	      React.createElement(
+	        "div",
+	        null,
+	        React.createElement("input", { className: "toggle", type: "checkbox", onChange: this._handleCheck, checked: this.props.task.completed }),
+	        React.createElement(
+	          "span",
+	          { className: completed },
+	          this.props.task.task
+	        )
+	      ),
+	      React.createElement(
+	        "button",
+	        { className: "destroy", onClick: this._handleDestroy },
+	        "x"
+	      )
 	    );
 	  }
 	});
@@ -21268,8 +21304,8 @@
 	    return React.createElement(
 	      'form',
 	      { onSubmit: this._handleSubmit },
-	      React.createElement('input', { type: 'text', ref: 'task', onChange: this._onChange, value: this.state.task }),
-	      React.createElement('input', { type: 'submit', value: 'Add' })
+	      React.createElement('input', { type: 'text', ref: 'task', onChange: this._onChange, placeholder: 'Add a todo', value: this.state.task, className: 'form-input' }),
+	      React.createElement('input', { type: 'submit', value: 'Add', className: 'submit-button' })
 	    );
 	  }
 	});
