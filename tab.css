@@ -46,7 +46,7 @@ html, body {
 #to-do-list {
   width: 20%;
   height: 20%;
-  background-color: rgba(125,125,125,0.5);
+  background-color: rgba(125, 125, 125, 0.5);
   padding: 20px;
   position: absolute;
   right: 0;
@@ -83,6 +83,7 @@ html, body {
 
 .toggle {
   padding: 5px;
+  cursor: pointer;
 }
 
 .completed {
@@ -108,4 +109,19 @@ form {
 
 .form-input {
   cursor: pointer;
+}
+
+/*placeholder input*/
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: whitesmoke;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: whitesmoke;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: whitesmoke;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: whitesmoke;
 }
