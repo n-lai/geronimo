@@ -2,11 +2,6 @@
 
 Tired of the standard new tab page for Google Chrome? Fellow Whovian? You've come to the right place! The Doctor Who Chrome Extension replaces the standard new tab page and features a Tardis-themed background and todo list to keep you on track as you browse the web.  
 
-<!-- [Survival of the Teddy live][link]
-
-[link]: n-lai.github.io -->
-
-
 ![image of extension][extension-image]
 
 [extension-image]: new_tab_screenshot.png  

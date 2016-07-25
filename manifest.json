@@ -3,10 +3,10 @@
 
   "name": "Doctor Who Tab",
   "description": "This extension will display a productivity tab with a Doctor Who theme",
-  "version": "1.0",
+  "version": "1.1",
 
   "chrome_url_overrides" : {
-      "newtab": "tab.html"
+    "newtab": "tab.html"
   },
 
   "permissions": [
