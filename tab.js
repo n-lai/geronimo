@@ -1,9 +1,9 @@
 const pics = [
-  'https://images3.alphacoders.com/444/44447.jpg',
-  'http://i.imgur.com/Y3Xs6lY.jpg',
-  'http://wallpapercave.com/wp/Yd15nN4.jpg',
-  'https://images2.alphacoders.com/438/438676.jpg',
-  'https://images4.alphacoders.com/198/198906.jpg'
+  'http://res.cloudinary.com/dl8lhjvx0/image/upload/c_scale,w_1024/v1469557463/44447_uxwrlz.jpg',
+  'http://res.cloudinary.com/dl8lhjvx0/image/upload/c_scale,w_1024/v1469557709/Y3Xs6lY_dgl88t.jpg',
+  'http://res.cloudinary.com/dl8lhjvx0/image/upload/c_scale,w_1024/v1469557734/Yd15nN4_zwhlka.jpg',
+  'http://res.cloudinary.com/dl8lhjvx0/image/upload/c_scale,w_1024/v1469557755/438676_oxfxld.jpg',
+  'http://res.cloudinary.com/dl8lhjvx0/image/upload/c_scale,w_1024/v1469557775/198906_nibkv3.jpg'
 ];
 
 const quotes = [
