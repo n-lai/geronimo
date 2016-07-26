@@ -16,11 +16,23 @@ html, body {
 
   background: transparent;
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
-  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-family: "Venera";
 
   list-style-type: none;
+}
+
+@import url(http://db.onlinewebfonts.com/c/05f40e99838fb2c3ccc401628e147c48?family=Venera);
+
+@font-face {font-family: "Venera";
+    src: url("http://db.onlinewebfonts.com/t/05f40e99838fb2c3ccc401628e147c48.eot");
+    src: url("http://db.onlinewebfonts.com/t/05f40e99838fb2c3ccc401628e147c48.eot?#iefix") format("embedded-opentype"),
+    url("http://db.onlinewebfonts.com/t/05f40e99838fb2c3ccc401628e147c48.woff2") format("woff2"),
+    url("http://db.onlinewebfonts.com/t/05f40e99838fb2c3ccc401628e147c48.woff") format("woff"),
+    url("http://db.onlinewebfonts.com/t/05f40e99838fb2c3ccc401628e147c48.ttf") format("truetype"),
+    url("http://db.onlinewebfonts.com/t/05f40e99838fb2c3ccc401628e147c48.svg#Venera") format("svg");
 }
 
 #main {
@@ -38,7 +50,7 @@ html, body {
   bottom: 0%;
   transform: translate(-50%, -10%);
   color: white;
-  font-size: 30px;
+  font-size: 23px;
   background-color: rgba(50, 50, 50, 0.3);
   padding: 10px;
 }
