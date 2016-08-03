@@ -1,8 +1,8 @@
 {
   "name": "flex_project",
   "version": "1.0.0",
-  "description": "",
-  "main": "jstemplate.js",
+  "description": "Tired of the standard new tab page for Google Chrome? Fellow Whovian? You've come to the right place! The Doctor Who Chrome Extension replaces the standard new tab page and features a Tardis-themed background and todo list to keep you on track as you browse the web.",
+  "main": "bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,9 +18,6 @@
   },
   "homepage": "https://github.com/n-lai/geronimo#readme",
   "dependencies": {
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "webpack": "^1.13.1"
