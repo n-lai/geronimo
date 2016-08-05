@@ -1,6 +1,6 @@
 # Doctor Who Chrome Extension
 
-Tired of the standard new tab page for Google Chrome? Fellow Whovian? You've come to the right place! The Doctor Who Chrome Extension replaces the standard new tab page and features a Tardis-themed background and todo list to keep you on track as you browse the web.  
+Tired of the standard new tab page for Google Chrome? Fellow Whovian? You've come to the right place! The Doctor Who Chrome Extension replaces the standard new tab page and features a Tardis-themed background and to-do list to keep you on track as you browse the web.  
 
 [Google Web Store] [link]
 
@@ -19,7 +19,7 @@ Tired of the standard new tab page for Google Chrome? Fellow Whovian? You've com
     * TodoForm
 
 ### App
-`App` contains all the logic for retrieving tasks from and updating `chrome.storage.local` with new tasks. This allows the todo list to be persisted with each browser session. `fetchTasks()` retrieves the tasks stored in local storage and resets the state. The task array is then sent to `TodoList` as a prop to be rendered.
+`App` contains all the logic for retrieving tasks from and updating `chrome.storage.local` with new tasks. This allows the to-do list to be persisted with each browser session. `fetchTasks()` retrieves the tasks stored in local storage and resets the state. The task array is then sent to `TodoList` as a prop to be rendered.
 
 ```javascript
 fetchTasks() {
