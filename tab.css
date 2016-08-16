@@ -122,6 +122,15 @@ form {
   cursor: pointer;
 }
 
+.icons {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(50, 50, 50, 0.3);
+  width: 32px;
+}
+
 /*placeholder input*/
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
