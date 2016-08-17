@@ -131,6 +131,12 @@ form {
   width: 32px;
 }
 
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
 /*placeholder input*/
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
